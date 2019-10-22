@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    druid:
+      stat-view-servlet:
+        login-username: admin
+        login-password: 123456
+    dynamic: #动态多数据源
+      primary: master #设置默认数据源
+      strict: false #设置严格模式，默认false不启动，启动后在未匹配到数据源时抛出异常，不启动则使用默认数据源
+      druid:
+        initial-size: 10
+        max-active: 20
+        min-idle: 10
+        max-wait: 50000
+        stat:
+          merge-sql: false
+          log-slow-sql: true
+          slow-sql-millis: 1000
+      datasource:
+        master:
+          url: jdbc:mysql://172.17.60.159:3306/youbetter?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+          username: root
+          password: helloYbL
+          driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    open: false #redis的开关，调试阶段可以设为false
+    expire: 60
+    database: 0
+    host: 172.17.60.159
+    port: 6379
+    timeout: 2000
+    password: YBL123456x
+    lettuce:
+      pool:
+        max-idle: 100 #最大空闲连接数
+        max-active: 200 #最大连接数
+        max-wait: 1000 #最大连接等待时间
+
+protest:
+  enable: dev
